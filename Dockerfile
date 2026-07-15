@@ -1,12 +1,13 @@
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:17-jdk-jammy
 
-WORKDIR /app/travelagency
+WORKDIR /app
 
-COPY travelagency/ .
+COPY . .
 
-RUN chmod +x mvnw
+RUN chmod +x ./mvnw
+
 RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","target/*.jar"]
+CMD ["java", "-jar", "target/*.jar"]
